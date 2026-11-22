@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEO Article Studio</title>
+<meta name="description" content="Buat artikel SEO dengan AI, analisis optimasi, dan ekspor Markdown.">
+<style>
+:root{--bg:#0b1020;--panel:#121a2d;--panel2:#172238;--line:#293650;--text:#edf3ff;--muted:#9eacc4;--accent:#83d7b0;--accent2:#a6f0cf;--danger:#ff9b9b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#1b2b43 0,transparent 40%),var(--bg);color:var(--text);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+header{max-width:1220px;margin:auto;padding:26px 24px 16px;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#9cf0c8,#51a98d);display:grid;place-items:center;color:#08251b;font-weight:900;font-size:20px}.brand h1{font-size:19px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.pill{border:1px solid var(--line);border-radius:999px;padding:7px 12px;color:var(--muted);font-size:12px}
+main{max-width:1220px;margin:auto;padding:10px 24px 50px}.intro{margin:16px 0 22px}.intro h2{font-size:29px;letter-spacing:-.7px;margin:0 0 5px}.intro p{color:var(--muted);margin:0}.layout{display:grid;grid-template-columns: minmax(0,1.65fr) minmax(280px,.8fr);gap:18px}.card{background:linear-gradient(180deg,rgba(23,34,56,.96),rgba(18,26,45,.98));border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 14px 35px #0002}.card h3{font-size:16px;margin:0 0 16px}.field{margin-bottom:14px}label{display:block;font-size:12px;color:#c4d0e3;margin:0 0 6px;font-weight:650}input,textarea,select{width:100%;background:#0d1628;border:1px solid #34435e;border-radius:10px;padding:11px 12px;color:var(--text);font:inherit;outline:none}input:focus,textarea:focus,select:focus{border-color:var(--accent)}textarea{resize:vertical;min-height:110px}#article{min-height:450px;font:14px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}button{border:0;border-radius:10px;padding:10px 15px;font-weight:750;cursor:pointer;background:var(--accent);color:#08251b}button.secondary{background:#24334d;color:var(--text);border:1px solid #3a4a66}button:disabled{opacity:.5;cursor:wait}.hint{color:var(--muted);font-size:12px;margin-top:6px}.status{padding:10px 12px;border-radius:10px;background:#0d1628;border:1px solid var(--line);color:var(--muted);font-size:13px;margin-top:12px;white-space:pre-wrap}.status.error{color:var(--danger);border-color:#75404b}.status.ok{color:var(--accent2)}.score{font-size:42px;font-weight:850;letter-spacing:-2px}.score small{font-size:13px;color:var(--muted);letter-spacing:0;font-weight:500}.meter{height:8px;background:#0b1425;border-radius:9px;overflow:hidden;margin:9px 0 15px}.meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,#e8b86d,#83d7b0);transition:width .2s}.metric{display:flex;justify-content:space-between;border-bottom:1px solid #293650;padding:9px 0;font-size:13px}.metric span:last-child{color:var(--muted)}.checklist{padding-left:18px;color:var(--muted);font-size:13px}.checklist li{margin:7px 0}.small-title{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:20px 0 7px}.footer{color:#7788a4;font-size:11px;text-align:center;margin-top:25px}@media(max-width:850px){.layout{grid-template-columns:1fr}header{padding:20px}.intro h2{font-size:24px}main{padding:8px 16px 35px}.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">S</div><div><h1>SEO Article Studio</h1><p>AI writing workspace</p></div></div><span class="pill">OPENAI · NETLIFY FUNCTIONS</span></header>
+<main>
+<section class="intro"><h2>Tulis artikel yang siap dioptimasi.</h2><p>Generate draft, evaluasi elemen SEO dasar, lalu ekspor sebagai Markdown.</p></section>
+<div class="layout">
+<section class="card">
+<h3>✍️ Article workspace</h3>
+<div class="field"><label for="topic">Topik / judul artikel</label><input id="topic" placeholder="Contoh: Tips memilih desain interior rumah minimalis"></div>
+<div class="two">
+<div class="field"><label for="keyword">Keyword utama</label><input id="keyword" placeholder="desain interior minimalis"></div>
+<div class="field"><label for="audience">Target pembaca</label><input id="audience" placeholder="Pemilik rumah, pemula"></div>
+</div>
+<div class="two">
+<div class="field"><label for="language">Bahasa</label><select id="language"><option>Indonesia</option><option>English</option></select></div>
+<div class="field"><label for="length">Panjang artikel</label><select id="length"><option value="800">±800 kata</option><option value="1200" selected>±1.200 kata</option><option value="1800">±1.800 kata</option></select></div>
+</div>
+<div class="field"><label for="tone">Gaya penulisan</label><select id="tone"><option>Informatif dan profesional</option><option>Persuasif dan ramah</option><option>Praktis dan mudah dipahami</option><option>Editorial dan mendalam</option></select></div>
+<div class="actions"><button id="generate">✨ Generate artikel</button><button class="secondary" id="scoreBtn">Analisis SEO</button></div>
+<div id="generateStatus" class="status" role="status">Isi topik dan keyword, lalu klik Generate artikel.</div>
+<div class="small-title">Hasil artikel · Markdown</div>
+<div class="field"><label for="article">Konten artikel (dapat diedit)</label><textarea id="article" placeholder="Artikel hasil generate akan muncul di sini..."></textarea></div>
+<div class="two">
+<div class="field"><label for="metaTitle">Meta title</label><input id="metaTitle" placeholder="Judul SEO (50–60 karakter)"></div>
+<div class="field"><label for="slug">URL slug</label><input id="slug" placeholder="judul-artikel-seo"></div>
+</div>
+<div class="field"><label for="metaDescription">Meta description</label><textarea id="metaDescription" style="min-height:75px" placeholder="Ringkasan artikel sekitar 150–160 karakter"></textarea></div>
+<div class="actions"><button class="secondary" id="export">Unduh Markdown</button><button class="secondary" id="copy">Salin artikel</button><button class="secondary" id="publish">Cek Medium</button></div>
+<div id="mediumStatus" class="status">Publikasi langsung Medium memerlukan integration token lama yang masih aktif. Medium tidak lagi menerbitkan token integrasi baru secara umum.</div>
+</section>
+<aside class="card">
+<h3>📊 SEO quick audit</h3>
+<div class="score" id="score">— <small>/ 100</small></div><div class="meter"><span id="meter"></span></div>
+<div class="metric"><span>Jumlah kata</span><span id="words">0</span></div>
+<div class="metric"><span>Keyword di judul</span><span id="titleCheck">—</span></div>
+<div class="metric"><span>Keyword di konten</span><span id="keywordCheck">—</span></div>
+<div class="metric"><span>Meta description</span><span id="metaCheck">—</span></div>
+<div class="metric"><span>Heading H2</span><span id="headingCheck">—</span></div>
+<div class="metric"><span>Slug</span><span id="slugCheck">—</span></div>
+<div class="small-title">Rekomendasi</div><ul class="checklist" id="tips"><li>Isi artikel untuk memulai analisis.</li></ul>
+<div class="small-title">Koneksi</div>
+<div class="status" id="apiStatus">Memeriksa backend...</div>
+<p class="hint">Skor ini adalah audit heuristik on-page, bukan skor Google dan bukan jaminan peringkat.</p>
+</aside>
+</div>
+<p class="footer">SEO Article Studio · Simpan draft penting di perangkat Anda. API OpenAI ditagihkan terpisah dari langganan ChatGPT.</p>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const status=(id,msg,type='')=>{$(id).textContent=msg;$(id).className='status '+type};
+async function checkStatus(){try{const r=await fetch('/.netlify/functions/status');const d=await r.json();$('apiStatus').textContent=d.openai?'OpenAI API key terdeteksi.':'OPENAI_API_KEY belum dikonfigurasi di Netlify.';}catch(e){$('apiStatus').textContent='Backend belum dapat dihubungi.';}}
+function audit(){const text=$('article').value,kw=$('keyword').value.trim().toLowerCase(),title=$('metaTitle').value||$('topic').value,desc=$('metaDescription').value,slug=$('slug').value;const words=(text.match(/\b[\p{L}\p{N}]+\b/gu)||[]).length;const hasTitle=!!kw&&title.toLowerCase().includes(kw),hasKeyword=!!kw&&text.toLowerCase().includes(kw),hasMeta=desc.length>=120&&desc.length<=170,hasH2=/^##\s+/m.test(text),hasSlug=!!slug&&/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug);let score=0;score+=words>=600?20:words>=300?12:words>0?5:0;score+=hasTitle?20:0;score+=hasKeyword?20:0;score+=hasMeta?15:0;score+=hasH2?15:0;score+=hasSlug?10:0;$('score').innerHTML=score+' <small>/ 100</small>';$('meter').style.width=score+'%';$('words').textContent=words.toLocaleString('id-ID');$('titleCheck').textContent=kw?(hasTitle?'OK':'Perbaiki'):'Isi keyword';$('keywordCheck').textContent=kw?(hasKeyword?'OK':'Belum ada'):'Isi keyword';$('metaCheck').textContent=desc.length+' karakter';$('headingCheck').textContent=hasH2?'Ada':'Belum ada';$('slugCheck').textContent=hasSlug?'OK':'Periksa';const tips=[];if(words<600)tips.push('Tambahkan pembahasan yang bermanfaat dan mendalam (target awal 600+ kata).');if(!hasTitle)tips.push('Masukkan keyword utama ke meta title atau judul.');if(!hasKeyword)tips.push('Gunakan keyword secara alami di isi artikel.');if(!hasMeta)tips.push('Buat meta description sekitar 120–170 karakter.');if(!hasH2)tips.push('Tambahkan subjudul H2 agar artikel mudah dipindai.');if(!hasSlug)tips.push('Buat slug singkat dengan huruf kecil dan tanda hubung.');if(!tips.length)tips.push('Elemen dasar sudah terisi. Periksa kualitas, sumber, tautan, dan search intent secara manual.');$('tips').innerHTML=tips.map(t=>'<li>'+t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))+'</li>').join('');return score;}
+$('scoreBtn').onclick=audit;['article','keyword','topic','metaTitle','metaDescription','slug'].forEach(id=>$(id).addEventListener('input',audit));
+$('generate').onclick=async()=>{if(!$('topic').value.trim()){status('generateStatus','Masukkan topik artikel terlebih dahulu.','error');return;}const btn=$('generate');btn.disabled=true;status('generateStatus','Sedang membuat artikel dengan AI. Mohon tunggu...');try{const r=await fetch('/.netlify/functions/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({topic:$('topic').value,keyword:$('keyword').value,audience:$('audience').value,language:$('language').value,length:Number($('length').value),tone:$('tone').value})});const d=await r.json();if(!r.ok)throw new Error(d.error||'Gagal membuat artikel');$('article').value=d.article||'';$('metaTitle').value=d.metaTitle||$('topic').value;$('metaDescription').value=d.metaDescription||'';$('slug').value=d.slug||$('topic').value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');audit();status('generateStatus','Artikel berhasil dibuat. Silakan periksa fakta dan edit sebelum diterbitkan.','ok');}catch(e){status('generateStatus',e.message,'error');}finally{btn.disabled=false;}};
+$('export').onclick=()=>{const md='# '+($('metaTitle').value||$('topic').value)+'\n\n'+$('article').value+'\n\n---\n**Meta description:** '+$('metaDescription').value+'\n**Slug:** '+$('slug').value;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([md],{type:'text/markdown;charset=utf-8'}));a.download=($('slug').value||'artikel-seo')+'.md';a.click();URL.revokeObjectURL(a.href);};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('article').value);status('generateStatus','Artikel berhasil disalin.','ok');}catch(e){status('generateStatus','Tidak dapat mengakses clipboard. Silakan salin manual.','error');}};
+$('publish').onclick=async()=>{status('mediumStatus','Memeriksa koneksi Medium...');try{const r=await fetch('/.netlify/functions/medium-me');const d=await r.json();status('mediumStatus',r.ok?(d.username?'Terhubung sebagai '+d.username:'Token Medium terdeteksi, tetapi akun tidak terverifikasi.'):(d.error||'Token Medium belum dikonfigurasi.'),r.ok?'ok':'');}catch(e){status('mediumStatus','Gagal menghubungi backend Medium.','error');}};
+checkStatus();audit();
+</script>
+</body></html>
