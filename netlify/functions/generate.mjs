@@ -1,6 +1,6 @@
 export default async (req) => {
   if (req.method !== "POST") return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405, headers: { "Content-Type": "application/json" } });
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = Netlify.env.get("OPENAI_API_KEY");
   if (!apiKey) return Response.json({ error: "OPENAI_API_KEY belum dipasang sebagai environment variable di Netlify." }, { status: 503 });
   try {
     const body = await req.json();
@@ -10,7 +10,7 @@ export default async (req) => {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: process.env.OPENAI_MODEL || "gpt-4o-mini", temperature: 0.7, response_format: { type: "json_object" }, messages: [{ role: "system", content: "Anda adalah editor SEO berbahasa Indonesia. Hasil harus akurat, orisinal, mudah dibaca, dan mematuhi format JSON yang diminta." }, { role: "user", content: prompt }] })
+      body: JSON.stringify({ model: Netlify.env.get("OPENAI_MODEL") || "gpt-4o-mini", temperature: 0.7, response_format: { type: "json_object" }, messages: [{ role: "system", content: "Anda adalah editor SEO berbahasa Indonesia. Hasil harus akurat, orisinal, mudah dibaca, dan mematuhi format JSON yang diminta." }, { role: "user", content: prompt }] })
     });
     const data = await response.json();
     if (!response.ok) return Response.json({ error: data.error?.message || "OpenAI API request gagal." }, { status: response.status });
