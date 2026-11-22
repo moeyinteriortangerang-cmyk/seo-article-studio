@@ -1,6 +1,6 @@
 export default async (req) => {
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
-  const token = process.env.MEDIUM_INTEGRATION_TOKEN;
+  const token = Netlify.env.get("MEDIUM_INTEGRATION_TOKEN");
   if (!token) return Response.json({ error: "Token Medium belum dikonfigurasi." }, { status: 400 });
   try {
     const { title, content, tags = [], publishStatus = "draft" } = await req.json();
